@@ -16,12 +16,12 @@ Circles.create({
 
 $.notify({
 	icon: 'la la-bell',
-	title: 'Bootstrap notify',
-	message: 'Turning standard Bootstrap alerts into "notify" like notifications',
+	title: 'Smart Home System',
+	message: 'Welcome to Smart Home System',
 },{
-	type: 'success',
+	type: 'info',
 	placement: {
-		from: "bottom",
+		from: "top",
 		align: "right"
 	},
 	time: 1000,
@@ -99,7 +99,7 @@ $(".mapcontainer").mapael({
 				fill: "#004a9b"
 				, opacity: 0.6
 			}
-		}, 
+		},
 		defaultArea: {
 			attrs: {
 				fill: "#e4e4e4"
@@ -139,7 +139,7 @@ $(".mapcontainer").mapael({
 					}
 					, attrsHover: {
 						fill: "#59d05d"
-					}					
+					}
 				},
 				"US": {
 					tooltip: {content: "<b>United State</b>"},
@@ -148,7 +148,7 @@ $(".mapcontainer").mapael({
 					}
 					, attrsHover: {
 						fill: "#59d05d"
-					}					
+					}
 				},
 				"AU": {
 					tooltip: {content: "<b>Australia</b>"},
@@ -157,7 +157,7 @@ $(".mapcontainer").mapael({
 					}
 					, attrsHover: {
 						fill: "#59d05d"
-					}					
+					}
 				}
 			},
 		});

@@ -1,48 +1,134 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body         { padding-top:80px; }
-    </style>
+	<title>Smart Home System</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<script>
+	$(document).ready(function()
+	{
+		
+		//showMessage("Xin chao Mr Trieu Le");
+	}); // On document ready
+
+	function showMessage( message)
+		{
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var content = {};
+
+			content.message = message;
+			content.message = message;
+			content.title = '';
+ 			content.icon = 'fa fa-bell';
+			content.url = '/#';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: "danger",
+				placement: {
+					from: "top",
+					align: "right"
+				},
+				time: 1000,
+			});
+		};
+</script>
 <body>
-<div class="container">
-<div class="col-sm-6 col-sm-offset-3">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
 
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
 
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
 
-    <!-- LOGIN FORM -->
-    <form action="/login" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
+				<form class="login100-form validate-form" action="/login" method="post">
+					<span class="login100-form-title">
+						Smart Home System
+					</span>
 
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
-    </form>
+					<% if (message.length > 0) { %>
+						<script language="javascript">
+							showMessage("<%= message %>");
+						</script>
+					<% } %>
 
-    <hr>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-    <p>Need an account? <a href="/signup">Signup</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-    <div class="text-center">
-        <p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-        <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">tutorial</a>.</p>
-    </div>
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+<!--
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a>
+					</div>
+-->
 
-</div>
-</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
 </body>
+
+
 </html>

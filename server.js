@@ -28,10 +28,18 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+// Connect_Flash in order to send messages from API to EJS paes 
+app.use(require('connect-flash')());
+/*app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+*/
 // HTML Views
 app.use(express.static(('./views')));
 
 app.set('views','./views');
+app.set('trust proxy', 1) // trust first proxy
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
