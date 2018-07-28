@@ -3,8 +3,19 @@ module.exports = function(app, passport) {
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
-    app.get('/', function(req, res) {
-        res.render('login.ejs', { message: req.flash('loginMessage') });
+    app.get('/', function(req, res)
+    {
+      if (req.isAuthenticated())
+  		{
+  			console.log("Authenticated");
+  			res.redirect('/index');
+  		}
+  		else
+  		{
+  			console.log("NOT Authenticated");
+  			res.render('login.ejs', { message: req.flash('loginMessage') });
+  		}
+        //res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
     // PROFILE SECTION =========================
@@ -23,7 +34,20 @@ module.exports = function(app, passport) {
 
     // Index page
     app.get('/index',isLoggedIn, function(req, res) {
-        res.render('index.ejs', { message: req.flash('loginMessage') });
+        res.render('index.ejs',  {
+    			user : req.user
+    		});
+    });
+
+    // Check Roles
+    app.get('/roles', function(req, res) {
+      if(getUserRole(req, res) === 'admin')
+      {
+        res.status(200).send("Welcome admin !");
+      }
+      else {
+        res.status(403).send("You are not permitted to perform this action.");
+      }
     });
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -197,4 +221,17 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/');
+}
+
+// route middleware to ensure user is logged in
+function getUserRole(req, res)
+{
+    if (req.isAuthenticated())
+    {
+      return req.user.local.role;
+    }
+    else
+    {
+      res.redirect('/');
+    }
 }

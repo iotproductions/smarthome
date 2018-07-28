@@ -108,14 +108,14 @@
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >Trieu Le</span></span> </a>
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span ><%= user.local.name %></span></span> </a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
 										<div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
 										<div class="u-text">
-											<h4>Trieu Le</h4>
-											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<h4><%= user.local.name %></h4>
+											<p class="text-muted"><%= user.local.email %></p><a href="/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
@@ -142,8 +142,8 @@
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Trieu Le
-									<span class="user-level">Administrator</span>
+									<p>Welcome <%= user.local.name %></p>
+									<span class="user-level"><%= user.local.description %></span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -309,7 +309,9 @@
 									</div>
 								</div>
 							</div>
-<!-- 							<div class="col-md-3">
+
+
+								<div class="col-md-3">
 								<div class="card card-stats">
 									<div class="card-body ">
 										<div class="row">
@@ -384,10 +386,13 @@
 										</div>
 									</div>
 								</div>
-							</div> -->
+							</div>
+
+
 						</div>
 						<div class="row">
 							<div class="col-md-3">
+
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">Task</h4>
@@ -400,6 +405,7 @@
 										<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
 									</div>
 								</div>
+
 							</div>
 							<div class="col-md-9">
 								<div class="card">

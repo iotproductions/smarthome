@@ -7,8 +7,12 @@ var utf8 = require('utf8');
 var userSchema = mongoose.Schema({
 
     local            : {
+        name         : String,
+        avatar  	   : String,
+        description  : String, 
         email        : String,
-        password     : String
+        password     : String,
+        role         : String
     },
     facebook         : {
         id           : String,
