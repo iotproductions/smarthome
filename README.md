@@ -10,3 +10,9 @@ cd smarthome
 sudo npm install
 sudo node server
 ```
+## Git commit and publish
+Use bellow commands to commit and publish your project into Github
+```
+git commit -am "test commit"
+git push -u origin master
+```
