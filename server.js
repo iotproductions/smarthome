@@ -1,5 +1,5 @@
 // server.js
-
+// TEST PUBLISHING PROJECT INTO GITHUB
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
@@ -27,7 +27,6 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // Connect_Flash in order to send messages from API to EJS paes 
 app.use(require('connect-flash')());
 /*app.use(function (req, res, next) {
@@ -36,9 +35,9 @@ app.use(require('connect-flash')());
 });
 */
 // HTML Views
-app.use(express.static(('./views')));
+app.use(express.static(('/home/lethanhtrieuk36/smarthome/views')));
 
-app.set('views','./views');
+app.set('views','/home/lethanhtrieuk36/smarthome/views');
 app.set('trust proxy', 1) // trust first proxy
 
 app.set('view engine', 'ejs'); // set up ejs for templating

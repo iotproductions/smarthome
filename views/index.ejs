@@ -9,11 +9,12 @@
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-	<link rel="stylesheet" href="assets/css/ready.css">
-	<link rel="stylesheet" href="assets/css/demo.css">
+	
+	
 </head>
+<!--
+<body ng-app="myApp" ng-controller="MainController" data-ng-init="getData()">
+-->	
 <body>
 	<div class="wrapper">
 		<div class="main-header">
@@ -232,26 +233,51 @@
 				<div class="content">
 					<div class="container-fluid">
 						<h4 class="page-title">Dashboard</h4>
+	
+	
+
 						<div class="row">
+	
 							<div class="col-md-3">
 								<div class="card card-stats card-warning">
 									<div class="card-body ">
 										<div class="row">
 											<div class="col-5">
 												<div class="icon-big text-center">
-													<i class="la la-users"></i>
+													<i class="la la-sun-o"></i>
 												</div>
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Visitors</p>
-													<h4 class="card-title">1,294</h4>
+													<p class="card-category">Temperature</p>
+													<h4 class="card-title" id="weather_current_temperature">0</h4>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							
+							<div class="col-md-3">
+								<div class="card card-stats card-info">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-tint"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">Humidity</p>
+													<h4 class="card-title" id="weather_current_humidity">0</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+							
 							<div class="col-md-3">
 								<div class="card card-stats card-success">
 									<div class="card-body ">
@@ -290,26 +316,6 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="card card-stats card-primary">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-check-circle"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Order</p>
-													<h4 class="card-title">576</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
 
 								<div class="col-md-3">
 								<div class="card card-stats">
@@ -388,8 +394,67 @@
 								</div>
 							</div>
 
-
+						<!----	
+							
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title">Todo list manager</div>
+		</div>
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">ID</th>
+						<th scope="col">Title</th>
+						<th scope="col">Content</th>
+						<th scope="col">Created date</th>
+						<th scope="col">Updated date</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="emp in empoyees">
+                        <td >{{$index+1}} </td>
+                        <td >
+                           <input ng-model="emp._id" ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+						
+                        <td >
+                           <input ng-model="emp.title"  ng-disabled="!enabledEdit[{{$index}}]" />
+                        </td>
+                        <td  >
+                           <input ng-model="emp.content"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td  >
+                           <input ng-model="emp.createdAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td  >
+                           <input ng-model="emp.updatedAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td >
+                           <div class="buttons">
+                              <button ng-click="editEmployee($index)" type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-edit"></i>
+								</button>
+								 <button ng-click="saveEmployee($index)" type="button" data-toggle="tooltip" title="Save Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-save"></i>
+								</button>
+								<button ng-click="deleteEmployee($index)" type="button" data-toggle="tooltip" title="Remove Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-remove"></i>
+								</button>
+                              
+                           </div>
+                        </td>
+                     </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+--->
 						</div>
+						
+						
 						<div class="row">
 							<div class="col-md-3">
 
@@ -542,6 +607,20 @@
 									</div>
 								</div>
 							</div>
+							
+							<div class="col-md-8">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">trafficChart</h4>
+										<p class="card-category">
+										Number of products sold</p>
+									</div>
+									<div class="card-body">
+										<div id="trafficChart" class="chart"></div>
+									</div>
+								</div>
+							</div>
+							
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header ">
@@ -706,10 +785,11 @@
 				</div>
 				<footer class="footer">
 					<div class="container-fluid">
+						<!---
 						<nav class="pull-left">
 							<ul class="nav">
 								<li class="nav-item">
-									<a class="nav-link" href="http://www.themekita.com">
+									<a class="nav-link" href="#">
 										ThemeKita
 									</a>
 								</li>
@@ -719,14 +799,15 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="https://themewagon.com/license/#free-item">
+									<a class="nav-link" href="#">
 										Licenses
 									</a>
 								</li>
 							</ul>
 						</nav>
+						-->
 						<div class="copyright ml-auto">
-							2018, made with <i class="la la-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+							<strong>Copyright &copy; 2016 - 2020 <a href="/">Thanh Trieu</a>.</strong> All rights reserved.<i class="la la-heart heart text-danger"></i> 	
 						</div>
 					</div>
 				</footer>
@@ -754,19 +835,32 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link rel="stylesheet" href="assets/css/ready.css">
+	<link rel="stylesheet" href="assets/css/demo.css">
+	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="assets/js/core/popper.min.js"></script>
+	<script src="assets/js/core/bootstrap.min.js"></script>
+	<script src="assets/js/plugin/chartist/chartist.min.js"></script>
+	<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+	<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+	<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+	<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!--Load AngularJS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.js"></script>
+	<!--Load sweetalert2-->	 
+	<script src="assets/js/sweetalert2.all.js"></script>
+	<link rel="stylesheet" href="assets/css/sweetalert2.css">
+	<!--Load Main App-->	
+	<script src="assets/js/ready.min.js"></script>
+	<script src="assets/js/demo.js"></script>
 </body>
-<script src="assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="assets/js/core/popper.min.js"></script>
-<script src="assets/js/core/bootstrap.min.js"></script>
-<script src="assets/js/plugin/chartist/chartist.min.js"></script>
-<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
-<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script src="assets/js/ready.min.js"></script>
-<script src="assets/js/demo.js"></script>
+
 </html>

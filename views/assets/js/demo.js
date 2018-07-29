@@ -1,4 +1,279 @@
+/*
+var app = angular.module('myApp', []);
 
+app.controller("MainController",['$scope','$http',function($scope,$http){
+
+
+	$scope.getData = function() {
+		console.log("Button pressed	");
+		// Simple GET request example:
+		$http({
+		  method: 'GET',
+		  url: 'http://smarthome.myftp.org:5566/notes'
+		}).then(function successCallback(response) {
+			// this callback will be called asynchronously
+			console.log(JSON.stringify( response.data));
+			$scope.data = response.data;
+			$scope.empoyees = angular.copy( $scope.data);
+			angular.toJson($scope.empoyees );
+			
+			// when the response is available
+		  }, function errorCallback(response) {
+			// called asynchronously if an error occurs
+			console.log("errorCallback	" +  JSON.stringify(response));
+		   // or server returns response with an error status.
+		});
+	}
+	
+	$scope.enabledEdit =[];
+
+    $scope.addEmployee = function(index){
+	    var emp ={ firstName:"",lastName:"",email:"",
+	                   project:"",designation:"",empId:"",disableEdit:false};
+		$scope.empoyees.push(emp);
+		$scope.enabledEdit[$scope.empoyees.length-1]=true;
+	}
+	
+	$scope.editEmployee = function(index){
+		console.log("edit index: "+index);
+		$scope.enabledEdit[index] = !$scope.enabledEdit[index];
+	//	$scope.enabledEdit[index] = true;
+	}
+	
+	$scope.enterEmployee = function(content){
+		var obj = content.toString().split(","); 
+		console.log("Title: "+ obj[0]);
+		console.log("Content: "+ obj[1]);
+		if((obj[0] != "") && (obj[1] != ""))
+		{
+			console.log("Valid data");
+			var json_string = '{"title": "' + obj[0] + '", "content":"' + obj[1] + '"}'
+			console.log("json_string: ",json_string);
+			var json_obj = JSON.parse(json_string);
+			console.log("json_obj: ",json_obj);
+		    $.ajax({
+			url:  'http://smarthome.myftp.org:5566/notes/', 
+			type: "POST", 
+			dataType: "JSON",
+			contentType: 'application/json',
+			data: JSON.stringify(json_obj),
+			timeout: 45000,
+			success: function (source) {
+				console.log("data: ",source);
+				console.log("lenght: ",source.length);
+					status_code = true;
+					swal(
+					  'Success',
+					  'Data saved',
+					  'success'
+					)
+					$scope.getData();
+				}, 
+			error: function (xhr, textStatus, thrownError) {
+				status_code = false;
+					swal(
+					  'Error',
+					  JSON.stringify(xhr),
+					  'error'
+					)
+				}
+			}); 
+		}
+	}
+	$scope.saveEmployee = function(index){
+	   console.log("edit index: " + index);
+	   //console.log("ID: " + $scope.empoyees[index]._id);
+	   //console.log("Title: " + $scope.empoyees[index].title);
+	   //console.log("Content: " + $scope.empoyees[index].content);
+	  if(index == $scope.empoyees.length-1) // Them moi
+	  {
+		  if($scope.enabledEdit[index] == true) // Neu dang cho phep edit
+		   {
+			   var json_string = '{"title": "' + $scope.empoyees[index].title + '", "content":"' + $scope.empoyees[index].content + '"}'
+				console.log("json_string: ",json_string);
+				var json_obj = JSON.parse(json_string);
+				console.log("json_obj: ",json_obj);
+			   $.ajax({
+					url:  'http://smarthome.myftp.org:5566/notes/', 
+					type: "POST", 
+					dataType: "JSON",
+					contentType: 'application/json',
+					data: JSON.stringify(json_obj),
+					timeout: 45000,
+					success: function (source) {
+						console.log("data: ",source);
+						console.log("lenght: ",source.length);
+							status_code = true;
+							swal(
+							  'Success',
+							  'Data saved',
+							  'success'
+							)
+							$scope.getData();
+						}, 
+					error: function (xhr, textStatus, thrownError) {
+						status_code = false;
+							swal(
+							  'Error',
+							  JSON.stringify(xhr),
+							  'error'
+							)
+						}
+					}); 
+		   }
+		   else
+		   {
+			   swal({
+				  type: 'error',
+				  title: 'Nothing to update',
+				  text: 'You must click edit button before save it'
+				})
+		   }  
+	  }
+	  else // update lai noi dung
+	  {
+		   if($scope.enabledEdit[index] == true) // Neu dang cho phep edit
+		   {
+			   var json_string = '{"title": "' + $scope.empoyees[index].title + '", "content":"' + $scope.empoyees[index].content + '"}'
+				console.log("json_string: ",json_string);
+				var json_obj = JSON.parse(json_string);
+				console.log("json_obj: ",json_obj);
+			   $.ajax({
+					url:  'http://smarthome.myftp.org:5566/notes/' + $scope.empoyees[index]._id, 
+					type: "PUT", 
+					dataType: "JSON",
+					contentType: 'application/json',
+					data: JSON.stringify(json_obj),
+					timeout: 45000,
+					success: function (source) {
+						console.log("data: ",source);
+						console.log("lenght: ",source.length);
+							status_code = true;
+							swal(
+							  'Success',
+							  'Data saved',
+							  'success'
+							)
+							$scope.getData();
+						}, 
+					error: function (xhr, textStatus, thrownError) {
+						status_code = false;
+							swal(
+							  'Error',
+							  JSON.stringify(xhr),
+							  'error'
+							)
+						}
+					}); 
+		   }
+		   else
+		   {
+			   swal({
+				  type: 'error',
+				  title: 'Nothing to update',
+				  text: 'You must click edit button before save it'
+				})
+		   }  
+	  }
+
+	  
+	}
+	
+	$scope.deleteEmployee = function(index) {
+		
+		var id_to_delete = $scope.empoyees[index]._id;
+		
+		const swalWithBootstrapButtons = swal.mixin({
+		  confirmButtonClass: 'btn btn-success',
+		  cancelButtonClass: 'btn btn-danger',
+		  buttonsStyling: false,
+		})
+
+		swalWithBootstrapButtons({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonText: 'Yes, delete it!',
+		  cancelButtonText: 'No, cancel!',
+		  reverseButtons: true
+		}).then((result) => {
+		  if (result.value) {
+			
+			$.ajax({
+			url:  'http://smarthome.myftp.org:5566/notes/' +  id_to_delete, type: "DELETE", dataType: "JSON", 
+			timeout: 45000,
+			success: function (source) {
+					status_code = true;
+					swalWithBootstrapButtons(
+					  'Deleted!',
+					  'Your file has been deleted.',
+					  'success'
+					)
+					
+					$scope.empoyees.splice(index,1);
+					$scope.getData();
+				}, 
+			error: function (xhr, textStatus, thrownError) {
+				status_code = false;
+					alert(JSON.stringify(xhr));
+				}
+			});
+		  } else if (
+			// Read more about handling dismissals
+			result.dismiss === swal.DismissReason.cancel
+		  ) {
+			swalWithBootstrapButtons(
+			  'Cancelled',
+			  'Your imaginary file is safe :)',
+			  'error'
+			)
+		  }
+		})
+		
+		  
+	}
+
+	$scope.enterInfo = function()
+	{
+		swal.mixin({
+		  input: 'text',
+		  confirmButtonText: 'Next &rarr;',
+		  showCancelButton: true,
+		  progressSteps: ['1', '2']
+		}).queue([
+		  {
+			title: 'Enter Title',
+			text: 'Please enter the title here'
+		  },
+		  {
+			title: 'Enter Content',
+			text: 'Please enter the content here'
+		  }
+		]).then((result) => {
+		  if (result.value) {
+			
+			$scope.enterEmployee((result.value));
+			
+			swal({
+			  title: 'All done!',
+			  html:
+				'Your answers: <pre><code>' +
+				  JSON.stringify(result.value) +
+				'</code></pre>',
+			  confirmButtonText: 'Add'
+			})
+		  }
+		})
+	}
+
+	$scope.submitEmployee = function(){
+
+		console.log("form submitted:" + angular.toJson($scope.empoyees ));
+	}
+	
+}]);
+*/
 Circles.create({
 	id:           'task-complete',
 	radius:       75,
@@ -14,6 +289,7 @@ Circles.create({
 	styleText:    true
 })
 
+/*
 $.notify({
 	icon: 'la la-bell',
 	title: 'Smart Home System',
@@ -26,7 +302,39 @@ $.notify({
 	},
 	time: 1000,
 });
+*/
 
+$.ajax({
+		method: "GET",
+		url: "https://query.yahooapis.com/v1/public/yql",
+		data: {
+			q: "select * from weather.forecast where woeid in (select woeid from geo.places(1) where woeid='91877608') and u='c'",
+			format: "json",
+		}
+	})
+	.done(function(data_weather) 
+	{	
+		var weather = data_weather.query.results.channel;
+		//console.log(JSON.stringify(weather.item.condition.code));
+		//swal("Smart Home" ,"Welcome to Smart Home dashboard !" ,"success" );
+
+		$.notify({
+			icon: 'la la-bell',
+			title: 'Smart Home System',
+			message: 'Current temperature: ' + weather.item.condition.temp + " and Humidity: " + weather.atmosphere.humidity,
+		},{
+			type: 'success',
+			placement: {
+				from: "top",
+				align: "right"
+			},
+			time: 1000,
+		});
+		//console.log(JSON.stringify(weather.item.condition.temp));
+		$("#weather_current_temperature").html(weather.item.condition.temp + " °C");
+		$("#weather_current_humidity").html(weather.atmosphere.humidity + " %");
+	});
+	
 // monthlyChart
 
 Chartist.Pie('#monthlyChart', {
@@ -37,7 +345,6 @@ Chartist.Pie('#monthlyChart', {
 	Chartist.plugins.tooltip()
 	]
 });
-
 // trafficChart
 var chart = new Chartist.Line('#trafficChart', {
 	labels: [1, 2, 3, 4, 5, 6, 7],
