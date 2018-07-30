@@ -23,7 +23,7 @@ cd project_name
 sudo git init
 sudo git add --all
 sudo git commit -m 'First commit'
-sudo git remote add origin <remote repository URL>
+sudo git remote add origin https://github.com/iotproductions/project_name
 sudo git push origin master
 ```
 #Adding an existing project to GitHub using the command line
