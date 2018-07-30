@@ -17,13 +17,14 @@ git commit -am "test commit"
 git push -u origin master
 ```
 ## Github Commands for existing projects
-Add existing project into github
+Add existing project into github: Add new repository on github then type bellow commands
 ```
 cd project_name
 sudo git init
 sudo git add --all
-sudo git commit -m 'First commit'
 sudo git remote add origin https://github.com/iotproductions/project_name
+sudo git pull origin master
+sudo git commit -m 'First commit'
 sudo git push origin master
 ```
 #Adding an existing project to GitHub using the command line
