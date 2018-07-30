@@ -9,7 +9,7 @@
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 
-	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	
 </head>
 <!--
@@ -233,9 +233,70 @@
 				<div class="content">
 					<div class="container-fluid">
 						<h4 class="page-title">Dashboard</h4>
-	
-	
-
+						
+						
+<!--------------------------------------------------------------------------------------------------->
+						<section >
+						<div class="row">
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_demo_button" class="btn btn-sq-lg btn-danger ">
+										<i class="far fa-lightbulb fa-7x"></i><br/>
+										<strong>Light</strong>
+									</a>
+								</div>	
+							</div>
+							
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_pump_control" class="btn btn-sq-lg btn-info">
+										<i class="fas fa-gas-pump fa-7x"></i><br/>
+										<strong>Pump</strong>
+									</a>
+								</div>	
+							</div>
+							
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_timer_control" class="btn btn-sq-lg btn-success">
+										<i class="fas fa-stopwatch fa-7x"></i><br/>
+										<strong>Timer</strong>
+									</a>
+								</div>	
+							</div>
+							
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_socket_control" class="btn btn-sq-lg btn-primary">
+										<i class="fas fa-plug fa-7x"></i><br/>
+										<strong>Socket</strong>
+									</a>
+								</div>	
+							</div>
+							
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_door_control" class="btn btn-sq-lg btn-warning">
+										<i class="fas fa-unlock-alt fa-7x"></i><br/>
+										<strong>Door</strong>
+									</a>
+								</div>	
+							</div>
+							
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<a id="btn_power_control" class="btn btn-sq-lg btn-success">
+										<i class="fas fa-solar-panel fa-7x"></i><br/>
+										<strong>Power</strong>
+									</a>
+								</div>	
+							</div>
+							
+						</div> <!---row div -->
+						</section>
+<!--------------------------------------------------------------------------------------------------->				
+						
+							
 						<div class="row">
 	
 							<div class="col-md-3">
@@ -453,6 +514,23 @@
 	</div>
 --->
 						</div>
+						
+						
+						
+						
+						<div class="row">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
+									<p class="card-category">
+									Realtime camera streaming system </p>
+								</div>
+								<div id="webcam"  class="card-body">
+									<img src="/assets/img/room.jpg" class="img-responsive" style="width:100%;  height: auto;">
+								</div>
+							</div>
+						</div>
+						
 						
 						
 						<div class="row">
@@ -860,7 +938,344 @@
 	<link rel="stylesheet" href="assets/css/sweetalert2.css">
 	<!--Load Main App-->	
 	<script src="assets/js/ready.min.js"></script>
+	<script src="assets/js/socket.io.js"></script>
 	<script src="assets/js/demo.js"></script>
+	<script src="/assets/js/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://smarthome.myftp.org:8080');
+		socket.emit('some event', { for: 'everyone' });
+
+		$(document).ready(function()
+		{
+			socket.on('chat message', function(msg)
+			{
+				/*
+				$.notify({
+					icon: 'la la-bell',
+					title: 'Smart Home System',
+					message: msg,
+				},{
+					type: 'minimalist',
+					placement: {
+						from: "top",
+						align: "right"
+					},
+					time: 200,
+				});*/
+				
+			});
+			socket.on('server message', function(msg)
+			{
+				var device_status = JSON.parse(JSON.stringify(msg));
+				console.log( "Device status: ", device_status );
+				if(device_status.device === "light")
+				{
+					if(device_status.status === "on")
+					{ 
+						$("#btn_demo_button" ).removeClass("btn-basic" ).addClass("btn-danger");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the light",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_demo_button" ).removeClass("btn-danger" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the light",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+				if(device_status.device === "timer")
+				{
+					if(device_status.status === "on")
+					{
+						$("#btn_timer_control" ).removeClass("btn-basic" ).addClass("btn-success");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the timer",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_timer_control" ).removeClass("btn-success" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the timer",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+				if(device_status.device === "pump")
+				{
+					if(device_status.status === "on")
+					{
+						$("#btn_pump_control" ).removeClass("btn-basic" ).addClass("btn-info");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the pump",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_pump_control" ).removeClass("btn-info" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the pump",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+				if(device_status.device === "socket")
+				{
+					if(device_status.status === "on")
+					{
+						$("#btn_socket_control" ).removeClass("btn-basic" ).addClass("btn-primary");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the socket",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_socket_control" ).removeClass("btn-primary" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the socket",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+				if(device_status.device === "door")
+				{
+					if(device_status.status === "on")
+					{
+						$("#btn_door_control" ).removeClass("btn-basic" ).addClass("btn-warning");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the door",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_door_control" ).removeClass("btn-warning" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the door",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+				if(device_status.device === "power")
+				{
+					if(device_status.status === "on")
+					{
+						$("#btn_power_control" ).removeClass("btn-basic" ).addClass("btn-success");
+						
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn on the power",
+						},{
+							type: 'success',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+					else
+					{
+						$("#btn_power_control" ).removeClass("btn-success" ).addClass("btn-basic");
+						$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: "Turn off the power",
+						},{
+							type: 'danger',
+							placement: {
+								from: "top",
+								align: "right"
+							},
+							time: 200,
+						});
+					}
+				}
+				
+			}); // end of socket.on
+			
+			
+			$("#btn_demo_button").click(function()
+			{
+				$(this).toggleClass('btn-danger  btn-basic');
+				if($(this).hasClass("btn-danger"))
+				{
+					socket.emit('chat message',{"device":"light", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"light", "status":"off"});
+				}
+			});
+			
+			$("#btn_pump_control").click(function()
+			{
+				$(this).toggleClass('btn-info  btn-basic');
+				if($(this).hasClass("btn-info"))
+				{
+					socket.emit('chat message',{"device":"pump", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"pump", "status":"off"});
+				}
+			});
+			
+			$("#btn_timer_control").click(function()
+			{
+				$(this).toggleClass('btn-success  btn-basic');
+				if($(this).hasClass("btn-success"))
+				{
+					socket.emit('chat message',{"device":"timer", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"timer", "status":"off"});
+				}
+			});
+			
+			$("#btn_socket_control").click(function()
+			{
+				$(this).toggleClass('btn-primary  btn-basic');
+				if($(this).hasClass("btn-primary"))
+				{
+					socket.emit('chat message',{"device":"socket", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"socket", "status":"off"});
+				}
+			});
+			
+			$("#btn_door_control").click(function()
+			{
+				$(this).toggleClass('btn-warning  btn-basic');
+				if($(this).hasClass("btn-warning"))
+				{
+					socket.emit('chat message',{"device":"door", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"door", "status":"off"});
+				}
+			});
+			
+			$("#btn_power_control").click(function()
+			{
+				$(this).toggleClass('btn-success  btn-basic');
+				if($(this).hasClass("btn-success"))
+				{
+					socket.emit('chat message',{"device":"power", "status":"on"});
+				}
+				else
+				{
+					socket.emit('chat message',{"device":"power", "status":"off"});
+				}
+			});
+			
+			
+			createImageLayer();
+		}); // Ondocument ready
+		
+	</script>
 </body>
 
 </html>

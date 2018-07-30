@@ -323,13 +323,15 @@ $.ajax({
 			title: 'Smart Home System',
 			message: 'Current temperature: ' + weather.item.condition.temp + " and Humidity: " + weather.atmosphere.humidity,
 		},{
-			type: 'success',
+			type: 'info',
 			placement: {
 				from: "top",
 				align: "right"
 			},
 			time: 1000,
 		});
+		
+		
 		//console.log(JSON.stringify(weather.item.condition.temp));
 		$("#weather_current_temperature").html(weather.item.condition.temp + " °C");
 		$("#weather_current_humidity").html(weather.atmosphere.humidity + " %");

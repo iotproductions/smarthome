@@ -15,6 +15,9 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
+var http = require('http').Server(app);
+
+//var io = require('socket.io')(http);
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
@@ -63,6 +66,34 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// launch ======================================================================
-app.listen(port);
+
+
+// launch app and socket.IO=====================================================
+var server = app.listen(port);
+var io = require('socket.io').listen(server);
 console.log('The magic happens on port ' + port);
+// Socket.IO ====================================================================
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  //socket.emit('chat message', "Chao mung ban den voi Smart Home System !");
+  
+  //socket.emit('server message', "server message ******");
+  socket.on('chat message', function(msg)
+  {
+    console.log('chat message: ' + msg);
+		//socket.emit('chat message', "socket.emit: Xin chao day la server !");
+		socket.emit('server message', msg);
+		//socket.broadcast.emit('chat message', "[socket.broadcast] Service reply");
+		socket.broadcast.emit('server message', msg);
+  });
+  
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+
+
+
+// End of file ==================================================================
