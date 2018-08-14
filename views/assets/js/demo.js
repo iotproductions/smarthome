@@ -337,6 +337,8 @@ $.ajax({
 		$("#weather_current_humidity").html(weather.atmosphere.humidity + " %");
 	});
 	
+
+	
 // monthlyChart
 
 Chartist.Pie('#monthlyChart', {

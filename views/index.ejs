@@ -55,7 +55,7 @@
 						<li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="la la-bell"></i>
-								<span class="notification">3</span>
+								<span class="notification" id="id_notification_counter">0</span>
 							</a>
 							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
 								<li>
@@ -240,6 +240,12 @@
 						<div class="row">
 							<div class="col-md-2">
 								<div class="card card-stats">
+									<input id="id_change_light_color" type="text" class="form-control" value="rgb(255, 128, 0)" />
+								</div>	
+							</div>
+						
+							<div class="col-md-2">
+								<div class="card card-stats">
 									<a id="btn_demo_button" class="btn btn-sq-lg btn-danger ">
 										<i class="far fa-lightbulb fa-7x"></i><br/>
 										<strong>Light</strong>
@@ -350,8 +356,8 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Sales</p>
-													<h4 class="card-title">$ 1,345</h4>
+													<p class="card-category">Room Temperature</p>
+													<h4 class="card-title" id="room_current_temperature">0</h4>
 												</div>
 											</div>
 										</div>
@@ -369,8 +375,8 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Subscribers</p>
-													<h4 class="card-title">1303</h4>
+													<p class="card-category">Room Humidity</p>
+													<h4 class="card-title" id="room_current_humidity">0</h4>
 												</div>
 											</div>
 										</div>
@@ -936,6 +942,9 @@
 	<!--Load sweetalert2-->	 
 	<script src="assets/js/sweetalert2.all.js"></script>
 	<link rel="stylesheet" href="assets/css/sweetalert2.css">
+	<!--Load Bootstrap Color Picker-->	 
+	<script src="assets/js/bootstrap-colorpicker.js"></script>
+	<link rel="stylesheet" href="assets/css/bootstrap-colorpicker.css">
 	<!--Load Main App-->	
 	<script src="assets/js/ready.min.js"></script>
 	<script src="assets/js/socket.io.js"></script>
@@ -966,6 +975,7 @@
 			});
 			socket.on('server message', function(msg)
 			{
+				console.log( "Device status: ", msg );
 				var device_status = JSON.parse(JSON.stringify(msg));
 				console.log( "Device status: ", device_status );
 				if(device_status.device === "light")
@@ -1192,17 +1202,134 @@
 				
 			}); // end of socket.on
 			
+			socket.on('mqtt-message', function(msg)
+			{
+				console.log(msg);
+				if(msg.topic === 'Smart_Light_Status/rpc') // update light status
+				{
+					try
+					{
+						var jsonData = JSON.parse(msg.message);
+						if(jsonData.result.status === true) // den dang mo
+						{
+						    console.log("Cap nhat trang thai den dang mo");
+							$("#btn_demo_button" ).removeClass("btn-basic" ).addClass("btn-danger");
+							$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: 'Đèn ngủ đã được bật !',
+							},{
+								type: 'success',
+								placement: {
+									from: "top",
+									align: "right"
+								},
+								time: 200,
+							});
+						}
+						else // Den dang tat
+						{
+							console.log("Cap nhat trang thai den dang tat");
+							$("#btn_demo_button" ).removeClass("btn-danger" ).addClass("btn-basic");
+							$.notify({
+							icon: 'la la-bell',
+							title: 'Smart Home System',
+							message: 'Đèn ngủ đã được tắt !',
+							},{
+								type: 'danger',
+								placement: {
+									from: "top",
+									align: "right"
+								},
+								time: 200,
+							});
+						}
+					}
+					catch (e)
+					{
+						console.log("[Error] ",e);
+					}
+				}
+				if(msg.topic === "/devices/H0148R1S001N001/update")
+				{
+					try
+					{
+						var jsonData = JSON.parse(msg.message);
+						console.log("Temperature: ", jsonData.Temperature, " ,Humidity: ",jsonData.Humidity);
+						$("#room_current_temperature").html(jsonData.Temperature + " °C");
+						$("#room_current_humidity").html(jsonData.Humidity + " %");
+						$("#id_notification_counter").html(jsonData.Humidity);
+					}
+					catch (e)
+					{
+						console.log("[Error] ",e);
+					}
+				}
+				
+			}); // end of socket.on
 			
 			$("#btn_demo_button").click(function()
 			{
 				$(this).toggleClass('btn-danger  btn-basic');
 				if($(this).hasClass("btn-danger"))
 				{
-					socket.emit('chat message',{"device":"light", "status":"on"});
+					//socket.emit('chat message',{"device":"light", "status":"on"});
+					
+					$.ajax({
+						url: 'http://smarthome.myftp.org:5566/devices/on',
+						dataType: 'json',
+						type: 'GET',
+						data: null,
+						async: false,
+						success: function (result) {
+							if (!result.success || !result.data || !result.data.length) {
+							console.log("Gui lenh bat den thanh cong !");
+							getDeviceStatus();
+								/*swal({
+									closeOnEsc: false,
+									closeOnClickOutside: false,
+									title: 'Bật đèn thành công',
+									text: 'Đèn ngủ đã được bật !',
+									icon: 'success',
+									timer: 1500,
+									buttons: false,
+								});*/
+							} else{
+								sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
+							}
+						}
+					});
 				}
 				else
 				{
-					socket.emit('chat message',{"device":"light", "status":"off"});
+					//socket.emit('chat message',{"device":"light", "status":"off"});
+					
+					$.ajax({
+						url: 'http://smarthome.myftp.org:5566/devices/off',
+						dataType: 'json',
+						type: 'GET',
+						data: null,
+						async: false,
+						success: function (result) {
+							
+							if (!result.success || !result.data || !result.data.length) {
+								console.log("Gui lenh tat den thanh cong !");
+								getDeviceStatus();
+								/*swal({
+									closeOnEsc: false,
+									closeOnClickOutside: false,
+									title: 'Tắt đèn thành công',
+									text: 'Đèn ngủ đã được tắt !',
+									icon: 'success',
+									timer: 1500,
+									buttons: false,
+								});
+								*/
+							} else{
+								sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
+							}
+						}
+					});
 				}
 			});
 			
@@ -1271,10 +1398,48 @@
 				}
 			});
 			
+			$(function () {
+			  // Basic instantiation:
+			  $('#id_change_light_color').colorpicker();
+
+			  // Example using an event, to change the color of the .jumbotron background:
+			  $('#id_change_light_color').on('colorpickerChange', function(event) {
+				$('.jumbotron').css('background-color', event.color.toString());
+			  });
+			});
+				
+			getDeviceStatus();
 			
-			createImageLayer();
 		}); // Ondocument ready
-		
+		function getDeviceStatus()
+		{
+			$.ajax({
+			url: 'http://smarthome.myftp.org:5566/devices/getStatus',
+			dataType: 'json',
+			type: 'POST',
+			data: {SerialNumber:"H0148R1S001N001"},
+			async: false,
+			success: function (result) {
+				
+				if (!result.success || !result.data || !result.data.length) {
+					console.log("Gui lenh dong bo trang thai thanh cong !");
+					/*
+					swal({
+						closeOnEsc: false,
+						closeOnClickOutside: false,
+						title: 'Cập nhật trạng thái',
+						text: 'Đã gửi yêu cầu cập nhật trạng thái thiết bị !',
+						icon: 'success',
+						timer: 1000,
+						buttons: false,
+					});
+					*/
+				} else{
+					sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
+				}
+			}
+			});	
+		}
 	</script>
 </body>
 
