@@ -17,7 +17,7 @@
 <body ng-app="myApp" ng-controller="MainController" data-ng-init="getData()">
 -->
 
-<body>
+<body ng-app="myApp" ng-controller="MainController" data-ng-init="getData()">
     <div class="wrapper">
         <div class="main-header">
             <div class="logo-header">
@@ -243,27 +243,7 @@
                     <section>
                         <div class="row">
                             <!----Light Brightness----->
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Light Brightness</h4>
-                                        <p class="card-category">Current brightness of the light</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="success">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input id="slider" type="text" data-slider-min="-5" data-slider-max="20" data-slider-step="1" data-slider-value="0" />
-                                                    <button id="destroyEx5Slider" class='btn btn-danger'>Click to Destroy</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
+                            
                             <!----
 
 							<div class="col-md-2">
@@ -271,15 +251,23 @@
 									<input id="id_change_light_color" type="text" class="form-control" value="rgb(255, 128, 0)" />
 								</div>	
 							</div>
-						----->
+							----->
 
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Home Devices</h4>
-                                        <p class="card-category">Control all of devices in the home</p>
+                                        <h4 class="card-title">Devices list</h4>
+                                        <p class="card-category">List all of devices in the home</p>
                                     </div>
                                     <div class="card-body">
+										
+										<div class="col-md-12">
+											<div class="progress">
+											  <div id="id_light_brightness" class="progress-bar progress-bar-striped bg-success" role="progressbar"  style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="255">0%</div>
+											</div>
+										</div>
+										<hr>	
+										
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="card card-stats">
@@ -346,9 +334,122 @@
                             </div>
                         </div>
                         <!---row div -->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title text-primary">Realtime Temperature Monitoring</h4>
+											<p class="card-category text-success">
+												Current temperature:
+										   <strong><span id="id_current_temperature_value">0</span></strong>  (<strong><span id="id_current_temperature_time">0</span></strong>)
+										   </p>
+											<p class="card-category text-danger">
+											Maximum temperature today: <strong><span id="id_maximum_temperature_value">0</span></strong> at 
+										   <strong><span id="id_maximum_temperature_time">0</span></strong>
+										    </p>
+											<p class="card-category text-info">Minimum temperature today: <strong><span id="id_minimum_temperature_value">0</span></strong> at 
+										   <strong><span id="id_minimum_temperature_time">0</span></strong>
+										   </p>
+									</div>
+									<div class="card-body">
+										<p class="demo center">
+											<ul class="pagination pg-primary">
+												<li class="page-item">
+													<a id="id_previous_date" class="page-link" aria-label="Previous">
+														<span aria-hidden="true">&laquo;</span>
+														<span class="sr-only">Previous</span>
+													</a>
+												</li>
+												<li class="page-item">
+													<div class="input-group date" data-provide="datepicker">
+														<input id="datepicker" type="text" class="form-control">
+														<div class="input-group-addon">
+															<span class="glyphicon glyphicon-th"></span>
+														</div>
+													</div>
+												</li>
+												<li class="page-item">
+													<a id="id_next_date"  class="page-link"  aria-label="Next">
+														<span aria-hidden="true">&raquo;</span>
+														<span class="sr-only">Next</span>
+													</a>
+												</li>
+												<li class="page-item">
+													<li id="id_get_chart_of_date" class="page-item active"><a class="page-link" ><i class="la la-check"></i></a></li>
+												</li>
+											</ul>
+										</p>
+									   <!--- <div id="trafficChart" class="chart"></div> -->
+										<div id="temperature_chart" style="min-width: auto; height: auto; margin: 0 auto"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!---
+						<div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Home Devices</h4>
+                                        <p class="card-category">Control all of devices in the home</p>
+                                    </div>
+                                    <div class="card-body">
+										<button type="button" style="float:right;margin-bottom: 1px;" class="btn btn-success " ng-click="enterInfo()">Add Devices</button>
+										<button type="button" style="float:right;margin-bottom: 1px;" class="btn btn-info " ng-click="lightControl()">Light</button>
+										<table class="table table-head-bg-success table-striped table-hover">
+												<thead>
+													 <th style="width:1%;">No</th>
+													 <th style="width:10%;">ID</th>
+													 <th style="width:10%;">SerialNumber</th>
+													 <th style="width:10%;">DeviceName</th>
+													 <th style="width:2%;">DeviceStatus</th>
+													 <th style="width:30%;">Description</th>
+													 <th style="width:25%;">Action</th>
+												  </thead>
+												  <tbody>
+													 <tr ng-repeat="emp in empoyees">
+														<td >{{$index+1}}</td>
+														<td ng-bind="emp._id">
+														   <input ng-model="emp._id" ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.SerialNumber">
+														   <input ng-model="emp.SerialNumber"  ng-disabled="enabledEdit[{{$index}}]" />
+														</td>
+														
+														<td ng-bind="emp.DeviceName" >
+														   <input ng-model="emp.DeviceName"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.DeviceStatus" >
+														   <input ng-model="emp.DeviceStatus"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.Description" >
+														   <input ng-model="emp.Description"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td >
+														   <div class="buttons">
+															  <button type="button" class="btn btn-primary btn-sm" ng-click="editEmployee($index)">Edit</button>
+															  <button type="button" class="btn btn-info btn-sm" ng-click="saveEmployee($index)">Save</button>
+															  <button type="button" class="btn btn-danger btn-sm" ng-click="deleteEmployee($index)">Delete</button>
+														   </div>
+														</td>
+													 </tr>
+												  </tbody>
+											</table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							----->
+                        </div>
+						
                     </section>
                     <!--------------------------------------------------------------------------------------------------->
-
+				<section>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -517,6 +618,7 @@
                             </div>
                         </div>
                     </div>
+				</section>	
                     <!----	
 
 	<div class="card">
@@ -575,21 +677,22 @@
 		</div>
 	</div>
 --->
-                </div>
 
                 <div class="row">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
-                            <p class="card-category">
-                                Realtime camera streaming system </p>
-                        </div>
-                        <div id="webcam" class="card-body">
-                            <img src="/assets/img/room.jpg" class="img-responsive" style="width:100%;  height: auto;">
-                        </div>
-                    </div>
-                </div>
-
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
+								<p class="card-category">
+									Realtime camera streaming system </p>
+							</div>
+							<div id="webcam" class="card-body">
+								<img src="/assets/img/room.jpg" class="img-responsive" style="width:100%;  height: auto;">
+							</div>
+						</div>
+					</div>
+				</div>
+				
                 <div class="row">
                     <div class="col-md-3">
 
@@ -624,6 +727,7 @@
                         </div>
                     </div>
                 </div>
+				
                 <div class="row row-card-no-pd">
                     <div class="col-md-4">
                         <div class="card">
@@ -742,19 +846,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">trafficChart</h4>
-                                <p class="card-category">
-                                    Number of products sold</p>
-                            </div>
-                            <div class="card-body">
-                                <div id="trafficChart" class="chart"></div>
-                            </div>
-                        </div>
-                    </div>
+				
 
                     <div class="col-md-6">
                         <div class="card">
@@ -795,6 +887,7 @@
                             </div>
                         </div>
                     </div>
+					
                     <div class="col-md-6">
                         <div class="card card-tasks">
                             <div class="card-header ">
@@ -918,6 +1011,7 @@
                 </div>
             </div>
         </div>
+	 </div>	
         <footer class="footer">
             <div class="container-fluid">
                 <!---
@@ -995,505 +1089,26 @@
     <!--Load Bootstrap Color Picker-->
     <script src="assets/js/bootstrap-colorpicker.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.css">
-    <!--Load bootstrap-slider-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.js"></script>
+    <!--Load MomentJS-->
+	<script src="assets/js/moment.js"></script>
+	<!--Highcharts-->
+	<script src="assets/js/highcharts/highcharts.js"></script>
+	<script src="assets/js/highcharts/data.js"></script>
+	<script src="assets/js/highcharts/series-label.js"></script>
+	<script src="assets/js/highcharts/exporting.js"></script>
+	<script src="assets/js/highcharts/export-data.js"></script>
+	<link rel="stylesheet" href="assets/css/highcharts.css">
+	<!--Load bootstrap-datepicker-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/gijgo.min.js"></script>
+	<!--Load bootstrap-slider-->
+    <script src="assets/js/bootstrap-slider.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.css">
-    <!--Load Main App-->
+	<!--Load Main App-->
     <script src="assets/js/ready.min.js"></script>
     <script src="assets/js/socket.io.js"></script>
     <script src="assets/js/demo.js"></script>
     <script src="/assets/js/socket.io.js"></script>
-    <script>
-        var socket = io.connect('http://smarthome.myftp.org:8080');
-        socket.emit('some event', {
-            for: 'everyone'
-        });
-
-        $(document).ready(function() {
-            socket.on('chat message', function(msg) {
-                /*
-                $.notify({
-                	icon: 'la la-bell',
-                	title: 'Smart Home System',
-                	message: msg,
-                },{
-                	type: 'minimalist',
-                	placement: {
-                		from: "top",
-                		align: "right"
-                	},
-                	time: 200,
-                });*/
-
-            });
-            socket.on('server message', function(msg) {
-                console.log("Device status: ", msg);
-                var device_status = JSON.parse(JSON.stringify(msg));
-                console.log("Device status: ", device_status);
-                if (device_status.device === "light") {
-                    if (device_status.status === "on") {
-                        $("#btn_demo_button").removeClass("btn-basic").addClass("btn-danger");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the light",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_demo_button").removeClass("btn-danger").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the light",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-                if (device_status.device === "timer") {
-                    if (device_status.status === "on") {
-                        $("#btn_timer_control").removeClass("btn-basic").addClass("btn-success");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the timer",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_timer_control").removeClass("btn-success").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the timer",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-                if (device_status.device === "pump") {
-                    if (device_status.status === "on") {
-                        $("#btn_pump_control").removeClass("btn-basic").addClass("btn-info");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the pump",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_pump_control").removeClass("btn-info").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the pump",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-                if (device_status.device === "socket") {
-                    if (device_status.status === "on") {
-                        $("#btn_socket_control").removeClass("btn-basic").addClass("btn-primary");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the socket",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_socket_control").removeClass("btn-primary").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the socket",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-                if (device_status.device === "door") {
-                    if (device_status.status === "on") {
-                        $("#btn_door_control").removeClass("btn-basic").addClass("btn-warning");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the door",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_door_control").removeClass("btn-warning").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the door",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-                if (device_status.device === "power") {
-                    if (device_status.status === "on") {
-                        $("#btn_power_control").removeClass("btn-basic").addClass("btn-success");
-
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn on the power",
-                        }, {
-                            type: 'success',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    } else {
-                        $("#btn_power_control").removeClass("btn-success").addClass("btn-basic");
-                        $.notify({
-                            icon: 'la la-bell',
-                            title: 'Smart Home System',
-                            message: "Turn off the power",
-                        }, {
-                            type: 'danger',
-                            placement: {
-                                from: "top",
-                                align: "right"
-                            },
-                            time: 200,
-                        });
-                    }
-                }
-
-            }); // end of socket.on
-
-            socket.on('mqtt-message', function(msg) {
-                console.log(msg);
-                if (msg.topic === 'device/light') // update light status
-                {
-                    try {
-                        var jsonData = JSON.parse(msg.message);
-                        if (jsonData.state === "ON") // den dang mo
-                        {
-                            console.log("Cap nhat trang thai den dang mo");
-                            $("#btn_demo_button").removeClass("btn-basic").addClass("btn-danger");
-                            $.notify({
-                                icon: 'la la-bell',
-                                title: 'Smart Home System',
-                                message: 'Đèn ngủ đã được bật !',
-                            }, {
-                                type: 'success',
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                time: 200,
-                            });
-
-                            // Update slider bar value
-                            $("#slider").slider({
-                                range: "min",
-                                max: 255,
-                                value: jsonData.brightness,
-                            });
-                        } else // Den dang tat
-                        {
-                            console.log("Cap nhat trang thai den dang tat");
-                            $("#btn_demo_button").removeClass("btn-danger").addClass("btn-basic");
-                            $.notify({
-                                icon: 'la la-bell',
-                                title: 'Smart Home System',
-                                message: 'Đèn ngủ đã được tắt !',
-                            }, {
-                                type: 'danger',
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                time: 200,
-                            });
-
-                            // Update slider bar value
-                            $("#slider").slider({
-                                range: "min",
-                                max: 255,
-                                value: 0,
-                            });
-
-                        }
-                    } catch (e) {
-                        console.log("[Error] ", e);
-                    }
-                }
-                if (msg.topic === "/devices/H0148R1S001N001/update") {
-                    try {
-                        var jsonData = JSON.parse(msg.message);
-                        console.log("Temperature: ", jsonData.Temperature, " ,Humidity: ", jsonData.Humidity);
-                        $("#room_current_temperature").html(jsonData.Temperature + " °C");
-                        $("#room_current_humidity").html(jsonData.Humidity + " %");
-                        $("#id_notification_counter").html(jsonData.Humidity);
-                    } catch (e) {
-                        console.log("[Error] ", e);
-                    }
-                }
-
-            }); // end of socket.on
-
-            $("#btn_demo_button").click(function() {
-                $(this).toggleClass('btn-danger  btn-basic');
-                if ($(this).hasClass("btn-danger")) {
-                    //socket.emit('chat message',{"device":"light", "status":"on"});
-
-                    $.ajax({
-                        url: 'http://smarthome.myftp.org:5566/devices/on',
-                        dataType: 'json',
-                        type: 'GET',
-                        data: null,
-                        async: false,
-                        success: function(result) {
-                            if (!result.success || !result.data || !result.data.length) {
-                                console.log("Gui lenh bat den thanh cong !");
-                                getDeviceStatus();
-                                /*swal({
-                                	closeOnEsc: false,
-                                	closeOnClickOutside: false,
-                                	title: 'Bật đèn thành công',
-                                	text: 'Đèn ngủ đã được bật !',
-                                	icon: 'success',
-                                	timer: 1500,
-                                	buttons: false,
-                                });*/
-                            } else {
-                                sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
-                            }
-                        }
-                    });
-                } else {
-                    //socket.emit('chat message',{"device":"light", "status":"off"});
-
-                    $.ajax({
-                        url: 'http://smarthome.myftp.org:5566/devices/off',
-                        dataType: 'json',
-                        type: 'GET',
-                        data: null,
-                        async: false,
-                        success: function(result) {
-
-                            if (!result.success || !result.data || !result.data.length) {
-                                console.log("Gui lenh tat den thanh cong !");
-                                getDeviceStatus();
-                                /*swal({
-                                	closeOnEsc: false,
-                                	closeOnClickOutside: false,
-                                	title: 'Tắt đèn thành công',
-                                	text: 'Đèn ngủ đã được tắt !',
-                                	icon: 'success',
-                                	timer: 1500,
-                                	buttons: false,
-                                });
-                                */
-                            } else {
-                                sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
-                            }
-                        }
-                    });
-                }
-            });
-
-            $("#btn_pump_control").click(function() {
-                $(this).toggleClass('btn-info  btn-basic');
-                if ($(this).hasClass("btn-info")) {
-                    socket.emit('chat message', {
-                        "device": "pump",
-                        "status": "on"
-                    });
-                } else {
-                    socket.emit('chat message', {
-                        "device": "pump",
-                        "status": "off"
-                    });
-                }
-            });
-
-            $("#btn_timer_control").click(function() {
-                $(this).toggleClass('btn-success  btn-basic');
-                if ($(this).hasClass("btn-success")) {
-                    socket.emit('chat message', {
-                        "device": "timer",
-                        "status": "on"
-                    });
-                } else {
-                    socket.emit('chat message', {
-                        "device": "timer",
-                        "status": "off"
-                    });
-                }
-            });
-
-            $("#btn_socket_control").click(function() {
-                $(this).toggleClass('btn-primary  btn-basic');
-                if ($(this).hasClass("btn-primary")) {
-                    socket.emit('chat message', {
-                        "device": "socket",
-                        "status": "on"
-                    });
-                } else {
-                    socket.emit('chat message', {
-                        "device": "socket",
-                        "status": "off"
-                    });
-                }
-            });
-
-            $("#btn_door_control").click(function() {
-                $(this).toggleClass('btn-warning  btn-basic');
-                if ($(this).hasClass("btn-warning")) {
-                    socket.emit('chat message', {
-                        "device": "door",
-                        "status": "on"
-                    });
-                } else {
-                    socket.emit('chat message', {
-                        "device": "door",
-                        "status": "off"
-                    });
-                }
-            });
-
-            $("#btn_power_control").click(function() {
-                $(this).toggleClass('btn-success  btn-basic');
-                if ($(this).hasClass("btn-success")) {
-                    socket.emit('chat message', {
-                        "device": "power",
-                        "status": "on"
-                    });
-                } else {
-                    socket.emit('chat message', {
-                        "device": "power",
-                        "status": "off"
-                    });
-                }
-            });
-
-            $(function() {
-                // Basic instantiation:
-                $('#id_change_light_color').colorpicker();
-
-                // Example using an event, to change the color of the .jumbotron background:
-                $('#id_change_light_color').on('colorpickerChange', function(event) {
-                    $('.jumbotron').css('background-color', event.color.toString());
-                });
-            });
-
-            getDeviceStatus();
-
-            $("#id_btn_set_brightness").click(function() {
-                //console.log("Current brightness value: ",$( "#slider" )); 
-            });
-
-            $('#slider').bootstrapSlider({
-                formatter: function(value) {
-                    console.log("Current brightness value: ", value);
-                    return 'Current value: ' + value;
-                }
-            });
-
-        }); // Ondocument ready
-
-        function getDeviceStatus() {
-            $.ajax({
-                url: 'http://smarthome.myftp.org:5566/devices/getStatus',
-                dataType: 'json',
-                type: 'POST',
-                data: {
-                    SerialNumber: "H0148R1S001N001"
-                },
-                async: false,
-                success: function(result) {
-
-                    if (!result.success || !result.data || !result.data.length) {
-                        console.log("Gui lenh dong bo trang thai thanh cong !");
-                        /*
-                        swal({
-                        	closeOnEsc: false,
-                        	closeOnClickOutside: false,
-                        	title: 'Cập nhật trạng thái',
-                        	text: 'Đã gửi yêu cầu cập nhật trạng thái thiết bị !',
-                        	icon: 'success',
-                        	timer: 1000,
-                        	buttons: false,
-                        });
-                        */
-                    } else {
-                        sweetAlert("Thất bại", "Xảy ra lỗi, vui lòng thử lại sau", "warning")
-                    }
-                }
-            });
-        }
-    </script>
+	<script src="assets/js/ready.js"></script>
 </body>
-
 </html>
