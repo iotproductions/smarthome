@@ -118,7 +118,9 @@
                                     <div class="user-box">
                                         <div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
                                         <div class="u-text">
-                                            <h4><%= user.local.name %></h4>
+                                            <h4>
+                                                <%= user.local.name %>
+                                            </h4>
                                             <p class="text-muted">
                                                 <%= user.local.email %>
                                             </p><a href="/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -234,16 +236,16 @@
                 </ul>
             </div>
         </div>
+
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
-                    <h4 class="page-title">Dashboard</h4>
-
+                    <h4 class="page-title text-primary"><i class="la la-home"></i> Dashboard</h4>
                     <!--------------------------------------------------------------------------------------------------->
                     <section>
                         <div class="row">
                             <!----Light Brightness----->
-                            
+
                             <!----
 
 							<div class="col-md-2">
@@ -253,21 +255,22 @@
 							</div>
 							----->
 
+
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Devices list</h4>
-                                        <p class="card-category">List all of devices in the home</p>
+                                        <h4 class="card-title">Smart Devices</h4>
+                                        <p class="card-category">List all of smart devices in the room</p>
                                     </div>
                                     <div class="card-body">
-										
-										<div class="col-md-12">
-											<div class="progress">
-											  <div id="id_light_brightness" class="progress-bar progress-bar-striped bg-success" role="progressbar"  style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="255">0%</div>
-											</div>
-										</div>
-										<hr>	
-										
+
+                                        <div class="col-md-12">
+                                            <div class="progress">
+                                                <div id="id_light_brightness" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="255">0%</div>
+                                            </div>
+                                        </div>
+                                        <hr>
+
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="card card-stats">
@@ -333,60 +336,153 @@
                                 </div>
                             </div>
                         </div>
-                        <!---row div -->
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title text-primary">Realtime Temperature Monitoring</h4>
-											<p class="card-category text-success">
-												Current temperature:
-										   <strong><span id="id_current_temperature_value">0</span></strong>  (<strong><span id="id_current_temperature_time">0</span></strong>)
-										   </p>
-											<p class="card-category text-danger">
-											Maximum temperature today: <strong><span id="id_maximum_temperature_value">0</span></strong> at 
-										   <strong><span id="id_maximum_temperature_time">0</span></strong>
-										    </p>
-											<p class="card-category text-info">Minimum temperature today: <strong><span id="id_minimum_temperature_value">0</span></strong> at 
-										   <strong><span id="id_minimum_temperature_time">0</span></strong>
-										   </p>
-									</div>
-									<div class="card-body">
-										<p class="demo center">
-											<ul class="pagination pg-primary">
-												<li class="page-item">
-													<a id="id_previous_date" class="page-link" aria-label="Previous">
-														<span aria-hidden="true">&laquo;</span>
-														<span class="sr-only">Previous</span>
-													</a>
-												</li>
-												<li class="page-item">
-													<div class="input-group date" data-provide="datepicker">
-														<input id="datepicker" type="text" class="form-control">
-														<div class="input-group-addon">
-															<span class="glyphicon glyphicon-th"></span>
-														</div>
-													</div>
-												</li>
-												<li class="page-item">
-													<a id="id_next_date"  class="page-link"  aria-label="Next">
-														<span aria-hidden="true">&raquo;</span>
-														<span class="sr-only">Next</span>
-													</a>
-												</li>
-												<li class="page-item">
-													<li id="id_get_chart_of_date" class="page-item active"><a class="page-link" ><i class="la la-check"></i></a></li>
-												</li>
-											</ul>
-										</p>
-									   <!--- <div id="trafficChart" class="chart"></div> -->
-										<div id="temperature_chart" style="min-width: auto; height: auto; margin: 0 auto"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!---
+
+                        <!---Weather Forecast-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Weather Forecast</h4>
+                                        <p class="card-category">Weather forecast in Tra Vinh city in the coming days</p>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="col-md-12">
+                                            <a class="weatherwidget-io" href="https://forecast7.com/en/9d81106d30/tra-vinh/" data-label_1="TRA VINH CITY" data-label_2="Weather forecast" data-theme="original">TRÀ VINH Dự báo thời tiết</a>
+                                            <script>
+                                                ! function(d, s, id) {
+                                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                                    if (!d.getElementById(id)) {
+                                                        js = d.createElement(s);
+                                                        js.id = id;
+                                                        js.src = 'https://weatherwidget.io/js/widget.min.js';
+                                                        fjs.parentNode.insertBefore(js, fjs);
+                                                    }
+                                                }(document, 'script', 'weatherwidget-io-js');
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Realtime temperature charts-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title text-primary">Realtime Temperature Monitoring</h4>
+                                        <p class="card-category text-success">
+                                            Current temperature:
+                                            <strong><span id="id_current_temperature_value">0</span></strong> (<strong><span id="id_current_temperature_time">0</span></strong>)
+                                        </p>
+                                        <p class="card-category text-danger">
+                                            Maximum temperature today: <strong><span id="id_maximum_temperature_value">0</span></strong> at
+                                            <strong><span id="id_maximum_temperature_time">0</span></strong>
+                                        </p>
+                                        <p class="card-category text-info">Minimum temperature today: <strong><span id="id_minimum_temperature_value">0</span></strong> at
+                                            <strong><span id="id_minimum_temperature_time">0</span></strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="demo center">
+                                            <ul class="pagination pg-primary">
+                                                <li class="page-item">
+                                                    <a id="id_previous_date" class="page-link" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <div class="input-group date" data-provide="datepicker">
+                                                        <input id="datepicker" type="text" class="form-control">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-th"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a id="id_next_date" class="page-link" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <li id="id_get_chart_of_date" class="page-item active"><a class="page-link"><i class="la la-check"></i></a></li>
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <!--- <div id="trafficChart" class="chart"></div> -->
+                                        <div id="temperature_chart" style="min-width: auto; height: auto; margin: 0 auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title text-primary">Monthly Temperature Monitoring</h4>
+                                        <p class="card-category text-success">
+                                            Maximum temperature of today:
+                                            <strong><span id="id_current_max_temperature_today">0</span></strong> 
+                                        </p>
+                                        <p class="card-category text-danger">
+                                            Maximum temperature on this month: <strong><span id="id_maximum_temperature_month">0</span></strong> 
+                                        </p>
+                                        <p class="card-category text-info">Minimum temperature on this month: <strong><span id="id_minimum_temperature_month">0</span></strong> 
+                                        </p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="demo center">
+                                            <ul class="pagination pg-primary">
+                                                <li class="page-item">
+                                                    <a id="id_previous_date" class="page-link" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <div class="input-group date" data-provide="datepicker">
+                                                        <input id="datepicker" type="text" class="form-control">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-th"></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a id="id_next_date" class="page-link" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <li id="id_get_chart_of_date" class="page-item active"><a class="page-link"><i class="la la-check"></i></a></li>
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <!--- <div id="trafficChart" class="chart"></div> -->
+                                        <div id="temperature_min_max_chart" style="min-width: auto; height: auto; margin: 0 auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Temperature in month</h4>
+                                        <p class="card-category">
+                                            Temperature chart of this month</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="salesChart" class="chart"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                        </div>
+
+                        <!---
 						<div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -445,169 +541,172 @@
                                 </div>
                             </div>
 							----->
-                        </div>
-						
+
+
                     </section>
                     <!--------------------------------------------------------------------------------------------------->
-				<section>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Air Quality</h4>
-                                <p class="card-category">Monitoring parameters of environments</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Air Quality</h4>
+                                        <p class="card-category">Monitoring parameters of environments</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
 
-                                    <div class="col-md-3">
-                                        <div class="card card-stats card-warning">
-                                            <div class="card-body ">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-sun-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Temperature</p>
-                                                            <h4 class="card-title" id="weather_current_temperature">0</h4>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats card-warning">
+                                                    <div class="card-body ">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-sun-o"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Temperature</p>
+                                                                    <h4 class="card-title" id="weather_current_temperature">0</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3">
-                                        <div class="card card-stats card-info">
-                                            <div class="card-body ">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-tint"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Humidity</p>
-                                                            <h4 class="card-title" id="weather_current_humidity">0</h4>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats card-info">
+                                                    <div class="card-body ">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-tint"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Humidity</p>
+                                                                    <h4 class="card-title" id="weather_current_humidity">0</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3">
-                                        <div class="card card-stats card-success">
-                                            <div class="card-body ">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-bar-chart"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Room Temperature</p>
-                                                            <h4 class="card-title" id="room_current_temperature">0</h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card card-stats card-danger">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-newspaper-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Room Humidity</p>
-                                                            <h4 class="card-title" id="room_current_humidity">0</h4>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats card-success">
+                                                    <div class="card-body ">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-bar-chart"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Room Temperature</p>
+                                                                    <h4 class="card-title" id="room_current_temperature">0</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats card-danger">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-newspaper-o"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Room Humidity</p>
+                                                                    <h4 class="card-title" id="room_current_humidity">0</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <div class="col-md-3">
-                                        <div class="card card-stats">
-                                            <div class="card-body ">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center icon-warning">
-                                                            <i class="la la-pie-chart text-warning"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Number</p>
-                                                            <h4 class="card-title">150GB</h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card card-stats">
-                                            <div class="card-body ">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-bar-chart text-success"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Revenue</p>
-                                                            <h4 class="card-title">$ 1,345</h4>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats">
+                                                    <div class="card-body ">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center icon-warning">
+                                                                    <i class="la la-pie-chart text-warning"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Number</p>
+                                                                    <h4 class="card-title">150GB</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card card-stats">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-times-circle-o text-danger"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Errors</p>
-                                                            <h4 class="card-title">23</h4>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats">
+                                                    <div class="card-body ">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-bar-chart text-success"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Revenue</p>
+                                                                    <h4 class="card-title">$ 1,345</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card card-stats">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="icon-big text-center">
-                                                            <i class="la la-heart-o text-primary"></i>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-times-circle-o text-danger"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Errors</p>
+                                                                    <h4 class="card-title">23</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-7 d-flex align-items-center">
-                                                        <div class="numbers">
-                                                            <p class="card-category">Followers</p>
-                                                            <h4 class="card-title">+45K</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card card-stats">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="icon-big text-center">
+                                                                    <i class="la la-heart-o text-primary"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7 d-flex align-items-center">
+                                                                <div class="numbers">
+                                                                    <p class="card-category">Followers</p>
+                                                                    <h4 class="card-title">+45K</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -617,393 +716,326 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-				</section>	
-                    <!----	
+                    </section>
 
-	<div class="card">
-		<div class="card-header">
-			<div class="card-title">Todo list manager</div>
-		</div>
-		<div class="card-body">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">ID</th>
-						<th scope="col">Title</th>
-						<th scope="col">Content</th>
-						<th scope="col">Created date</th>
-						<th scope="col">Updated date</th>
-						<th scope="col">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="emp in empoyees">
-                        <td >{{$index+1}} </td>
-                        <td >
-                           <input ng-model="emp._id" ng-disabled="!enabledEdit[{{$index}}]"/>
-                        </td>
-
-                        <td >
-                           <input ng-model="emp.title"  ng-disabled="!enabledEdit[{{$index}}]" />
-                        </td>
-                        <td  >
-                           <input ng-model="emp.content"  ng-disabled="!enabledEdit[{{$index}}]"/>
-                        </td>
-                        <td  >
-                           <input ng-model="emp.createdAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
-                        </td>
-                        <td  >
-                           <input ng-model="emp.updatedAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
-                        </td>
-                        <td >
-                           <div class="buttons">
-                              <button ng-click="editEmployee($index)" type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-									<i class="la la-edit"></i>
-								</button>
-								 <button ng-click="saveEmployee($index)" type="button" data-toggle="tooltip" title="Save Task" class="btn btn-link <btn-simple-primary">
-									<i class="la la-save"></i>
-								</button>
-								<button ng-click="deleteEmployee($index)" type="button" data-toggle="tooltip" title="Remove Task" class="btn btn-link <btn-simple-primary">
-									<i class="la la-remove"></i>
-								</button>
-
-                           </div>
-                        </td>
-                     </tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
---->
-
-                <div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
-								<p class="card-category">
-									Realtime camera streaming system </p>
-							</div>
-							<div id="webcam" class="card-body">
-								<img src="/assets/img/room.jpg" class="img-responsive" style="width:100%;  height: auto;">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-                <div class="row">
-                    <div class="col-md-3">
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Task</h4>
-                                <p class="card-category">Complete</p>
-                            </div>
-                            <div class="card-body">
-                                <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">World Map</h4>
-                                <p class="card-category">
-                                    Map of the distribution of users around the world</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="mapcontainer">
-                                    <div class="map">
-                                        <span>Alternative content for the map</span>
-                                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
+                                    <p class="card-category">
+                                        Realtime camera streaming system </p>
+                                </div>
+                                <div id="webcam" class="card-body">
+                                    <!-- <img id="live-stream-iframe" class="img-responsive" style="width:100%;  height: auto;" img src="http://lethanhtrieu.servehttp.com:8080/?action=stream"> -->
+                                    <!--<img src="http://lethanhtrieu.servehttp.com:8080/?action=stream" class="img-responsive" style="width:100%;  height: auto;"> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-				
-                <div class="row row-card-no-pd">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="fw-bold mt-1">My Balance</p>
-                                <h4><b>$ 3,018</b></h4>
-                                <a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Balance</a>
+
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Task</h4>
+                                    <p class="card-category">Complete</p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+                                </div>
                             </div>
-                            <div class="card-footer">
-                                <ul class="nav">
-                                    <li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
-                                    <li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
-                                </ul>
-                            </div>
+
                         </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Profit</span>
-                                        <span class="text-muted fw-bold"> $3K</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
-                                    </div>
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">World Map</h4>
+                                    <p class="card-category">
+                                        Map of the distribution of users around the world</p>
                                 </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Orders</span>
-                                        <span class="text-muted fw-bold"> 576</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Tasks Complete</span>
-                                        <span class="text-muted fw-bold"> 70%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-card">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="text-muted">Open Rate</span>
-                                        <span class="text-muted fw-bold"> 60%</span>
-                                    </div>
-                                    <div class="progress mb-2" style="height: 7px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-stats">
-                            <div class="card-body">
-                                <p class="fw-bold mt-1">Statistic</p>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center icon-warning">
-                                            <i class="la la-pie-chart text-warning"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Number</p>
-                                            <h4 class="card-title">150GB</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-heart-o text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Followers</p>
-                                            <h4 class="card-title">+45K</h4>
+                                <div class="card-body">
+                                    <div class="mapcontainer">
+                                        <div class="map">
+                                            <span>Alternative content for the map</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Users Statistics</h4>
-                                <p class="card-category">
-                                    Users statistics this month</p>
-                            </div>
-                            <div class="card-body">
-                                <div id="monthlyChart" class="chart chart-pie"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">2018 Sales</h4>
-                                <p class="card-category">
-                                    Number of products sold</p>
-                            </div>
-                            <div class="card-body">
-                                <div id="salesChart" class="chart"></div>
-                            </div>
-                        </div>
-                    </div>
-				
 
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header ">
-                                <h4 class="card-title">Table</h4>
-                                <p class="card-category">Users Table</p>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-head-bg-success table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Users Statistics</h4>
+                                    <p class="card-category">
+                                        Users statistics this month</p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="monthlyChart" class="chart chart-pie"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-					
-                    <div class="col-md-6">
-                        <div class="card card-tasks">
-                            <div class="card-header ">
-                                <h4 class="card-title">Tasks</h4>
-                                <p class="card-category">To Do List</p>
-                            </div>
-                            <div class="card-body ">
-                                <div class="table-full-width">
-                                    <table class="table">
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Table</h4>
+                                    <p class="card-category">Users Table</p>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-head-bg-success table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-                                                            <span class="form-check-sign"></span>
-                                                        </label>
-                                                    </div>
-                                                </th>
-                                                <th>Task</th>
-                                                <th>Action</th>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input task-select" type="checkbox">
-                                                            <span class="form-check-sign"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Planning new project structure</td>
-                                                <td class="td-actions text-right">
-                                                    <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                                            <i class="la la-edit"></i>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                                            <i class="la la-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <td>1</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input task-select" type="checkbox">
-                                                            <span class="form-check-sign"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Update Fonts</td>
-                                                <td class="td-actions text-right">
-                                                    <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                                            <i class="la la-edit"></i>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                                            <i class="la la-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <td>2</td>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input task-select" type="checkbox">
-                                                            <span class="form-check-sign"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Add new Post
-                                                </td>
-                                                <td class="td-actions text-right">
-                                                    <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                                            <i class="la la-edit"></i>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                                            <i class="la la-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input task-select" type="checkbox">
-                                                            <span class="form-check-sign"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>Finalise the design proposal</td>
-                                                <td class="td-actions text-right">
-                                                    <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                                            <i class="la la-edit"></i>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                                            <i class="la la-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <td>3</td>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@twitter</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="card-footer ">
-                                <div class="stats">
-                                    <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card card-tasks">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Tasks</h4>
+                                    <p class="card-category">To Do List</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="table-full-width">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                        </div>
+                                                    </th>
+                                                    <th>Task</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>Planning new project structure</td>
+                                                    <td class="td-actions text-right">
+                                                        <div class="form-button-action">
+                                                            <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>Update Fonts</td>
+                                                    <td class="td-actions text-right">
+                                                        <div class="form-button-action">
+                                                            <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>Add new Post
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div class="form-button-action">
+                                                            <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>Finalise the design proposal</td>
+                                                    <td class="td-actions text-right">
+                                                        <div class="form-button-action">
+                                                            <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                            <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="stats">
+                                        <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-card-no-pd">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="fw-bold mt-1">My Balance</p>
+                                    <h4><b>$ 3,018</b></h4>
+                                    <a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Balance</a>
+                                </div>
+                                <div class="card-footer">
+                                    <ul class="nav">
+                                        <li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
+                                        <li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="progress-card">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="text-muted">Profit</span>
+                                            <span class="text-muted fw-bold"> $3K</span>
+                                        </div>
+                                        <div class="progress mb-2" style="height: 7px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-card">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="text-muted">Orders</span>
+                                            <span class="text-muted fw-bold"> 576</span>
+                                        </div>
+                                        <div class="progress mb-2" style="height: 7px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-card">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="text-muted">Tasks Complete</span>
+                                            <span class="text-muted fw-bold"> 70%</span>
+                                        </div>
+                                        <div class="progress mb-2" style="height: 7px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-card">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="text-muted">Open Rate</span>
+                                            <span class="text-muted fw-bold"> 60%</span>
+                                        </div>
+                                        <div class="progress mb-2" style="height: 7px;">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats">
+                                <div class="card-body">
+                                    <p class="fw-bold mt-1">Statistic</p>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="la la-pie-chart text-warning"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Number</p>
+                                                <h4 class="card-title">150GB</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-heart-o text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Followers</p>
+                                                <h4 class="card-title">+45K</h4>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1011,7 +1043,6 @@
                 </div>
             </div>
         </div>
-	 </div>	
         <footer class="footer">
             <div class="container-fluid">
                 <!---
@@ -1090,25 +1121,26 @@
     <script src="assets/js/bootstrap-colorpicker.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.css">
     <!--Load MomentJS-->
-	<script src="assets/js/moment.js"></script>
-	<!--Highcharts-->
-	<script src="assets/js/highcharts/highcharts.js"></script>
-	<script src="assets/js/highcharts/data.js"></script>
-	<script src="assets/js/highcharts/series-label.js"></script>
-	<script src="assets/js/highcharts/exporting.js"></script>
-	<script src="assets/js/highcharts/export-data.js"></script>
-	<link rel="stylesheet" href="assets/css/highcharts.css">
-	<!--Load bootstrap-datepicker-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/gijgo.min.js"></script>
-	<!--Load bootstrap-slider-->
+    <script src="assets/js/moment.js"></script>
+    <!--Highcharts-->
+    <script src="assets/js/highcharts/highcharts.js"></script>
+    <script src="assets/js/highcharts/data.js"></script>
+    <script src="assets/js/highcharts/series-label.js"></script>
+    <script src="assets/js/highcharts/exporting.js"></script>
+    <script src="assets/js/highcharts/export-data.js"></script>
+    <link rel="stylesheet" href="assets/css/highcharts.css">
+    <!--Load bootstrap-datepicker-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/gijgo.min.js"></script>
+    <!--Load bootstrap-slider-->
     <script src="assets/js/bootstrap-slider.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.css">
-	<!--Load Main App-->
+    <!--Load Main App-->
     <script src="assets/js/ready.min.js"></script>
     <script src="assets/js/socket.io.js"></script>
     <script src="assets/js/demo.js"></script>
     <script src="/assets/js/socket.io.js"></script>
-	<script src="assets/js/ready.js"></script>
+    <script src="assets/js/ready.js"></script>
 </body>
+
 </html>

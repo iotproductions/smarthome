@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Smart Home System</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+</head>
+<!--
+<body ng-app="myApp" ng-controller="MainController" data-ng-init="getData()">
+-->
+
+<body ng-app="myApp" ng-controller="MainController" data-ng-init="getData()">
+    <div class="wrapper">
+        <div class="main-header">
+            <div class="logo-header">
+                <a href="/" class="logo">
+					Smart Home System
+				</a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+            </div>
+            <nav class="navbar navbar-header navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search ..." class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="la la-envelope"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown hidden-caret">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="la la-bell"></i>
+                                <span class="notification" id="id_notification_counter">0</span>
+                            </a>
+                            <ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <div class="dropdown-title">You have 4 new notification</div>
+                                </li>
+                                <li>
+                                    <div class="notif-center">
+                                        <a href="#">
+                                            <div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
+                                            <div class="notif-content">
+                                                <span class="block">
+													New user registered
+												</span>
+                                                <span class="time">5 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
+                                            <div class="notif-content">
+                                                <span class="block">
+													Rahmad commented on Admin
+												</span>
+                                                <span class="time">12 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-img">
+                                                <img src="assets/img/profile2.jpg" alt="Img Profile">
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="block">
+													Reza send messages to you
+												</span>
+                                                <span class="time">12 minutes ago</span>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
+                                            <div class="notif-content">
+                                                <span class="block">
+													Farrah liked Admin
+												</span>
+                                                <span class="time">17 minutes ago</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="see-all" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="la la-angle-right"></i> </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span><%= user.local.name %></span></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <div class="user-box">
+                                        <div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+                                        <div class="u-text">
+                                            <h4><%= user.local.name %></h4>
+                                            <p class="text-muted">
+                                                <%= user.local.email %>
+                                            </p><a href="/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                    </div>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
+                                <a class="dropdown-item" href="#"></i> My Balance</a>
+                                <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout"><i class="fa fa-power-off"></i> Logout</a>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div class="scrollbar-inner sidebar-wrapper">
+                <div class="user">
+                    <div class="photo">
+                        <img src="assets/img/profile.jpg">
+                    </div>
+                    <div class="info">
+                        <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+									<p>Welcome <%= user.local.name %></p>
+									<span class="user-level"><%= user.local.description %></span>
+                            <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                            <ul class="nav">
+                                <li>
+                                    <a href="#profile">
+                                        <span class="link-collapse">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile">
+                                        <span class="link-collapse">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings">
+                                        <span class="link-collapse">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a href="/">
+                            <i class="la la-dashboard"></i>
+                            <p>Dashboard</p>
+                            <span class="badge badge-count">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="components.html">
+                            <i class="la la-table"></i>
+                            <p>Components</p>
+                            <span class="badge badge-count">14</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="forms.html">
+                            <i class="la la-keyboard-o"></i>
+                            <p>Forms</p>
+                            <span class="badge badge-count">50</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tables.html">
+                            <i class="la la-th"></i>
+                            <p>Tables</p>
+                            <span class="badge badge-count">6</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="notifications.html">
+                            <i class="la la-bell"></i>
+                            <p>Notifications</p>
+                            <span class="badge badge-success">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="typography.html">
+                            <i class="la la-font"></i>
+                            <p>Typography</p>
+                            <span class="badge badge-danger">25</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="icons.html">
+                            <i class="la la-fonticons"></i>
+                            <p>Icons</p>
+                        </a>
+                    </li>
+                    <li class="nav-item update-pro">
+                        <button data-toggle="modal" data-target="#modalUpdate">
+                            <i class="la la-hand-pointer-o"></i>
+                            <p>Update To Pro</p>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <h4 class="page-title">Dashboard</h4>
+
+                    <!--------------------------------------------------------------------------------------------------->
+                    <section>
+                        <div class="row">
+                            <!----Light Brightness----->
+                            
+                            <!----
+
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<input id="id_change_light_color" type="text" class="form-control" value="rgb(255, 128, 0)" />
+								</div>	
+							</div>
+							----->
+
+                            
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Weather Forecast</h4>
+                                        <p class="card-category">Dự báo thời tiết tại thành phố Trà Vinh những ngày sắp tới</p>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="col-md-12">
+                                            <a class="weatherwidget-io" href="https://forecast7.com/en/9d81106d30/tra-vinh/" data-label_1="TRÀ VINH" data-label_2="Dự báo thời tiết"
+                                                data-theme="original">TRÀ VINH Dự báo thời tiết</a>
+                                            <script>
+                                                ! function (d, s, id) {
+                                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                                    if (!d.getElementById(id)) {
+                                                        js = d.createElement(s);
+                                                        js.id = id;
+                                                        js.src = 'https://weatherwidget.io/js/widget.min.js';
+                                                        fjs.parentNode.insertBefore(js, fjs);
+                                                    }
+                                                }(document, 'script', 'weatherwidget-io-js');
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Devices list</h4>
+                                        <p class="card-category">List all of devices in the home</p>
+                                    </div>
+                                    <div class="card-body">
+										
+										<div class="col-md-12">
+											<div class="progress">
+											  <div id="id_light_brightness" class="progress-bar progress-bar-striped bg-success" role="progressbar"  style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="255">0%</div>
+											</div>
+										</div>
+										<hr>	
+										
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_demo_button" class="btn btn-sq-lg btn-danger ">
+                                                        <i class="far fa-lightbulb fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Light</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_pump_control" class="btn btn-sq-lg btn-info">
+                                                        <i class="fas fa-gas-pump fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Pump</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_timer_control" class="btn btn-sq-lg btn-success">
+                                                        <i class="fas fa-stopwatch fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Timer</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_socket_control" class="btn btn-sq-lg btn-primary">
+                                                        <i class="fas fa-plug fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Socket</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_door_control" class="btn btn-sq-lg btn-warning">
+                                                        <i class="fas fa-unlock-alt fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Door</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="card card-stats">
+                                                    <a id="btn_power_control" class="btn btn-sq-lg btn-success">
+                                                        <i class="fas fa-solar-panel fa-7x"></i>
+                                                        <br/>
+                                                        <strong>Power</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!---row div -->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title text-primary">Realtime Temperature Monitoring</h4>
+											<p class="card-category text-success">
+												Current temperature:
+										   <strong><span id="id_current_temperature_value">0</span></strong>  (<strong><span id="id_current_temperature_time">0</span></strong>)
+										   </p>
+											<p class="card-category text-danger">
+											Maximum temperature today: <strong><span id="id_maximum_temperature_value">0</span></strong> at 
+										   <strong><span id="id_maximum_temperature_time">0</span></strong>
+										    </p>
+											<p class="card-category text-info">Minimum temperature today: <strong><span id="id_minimum_temperature_value">0</span></strong> at 
+										   <strong><span id="id_minimum_temperature_time">0</span></strong>
+										   </p>
+									</div>
+									<div class="card-body">
+										<p class="demo center">
+											<ul class="pagination pg-primary">
+												<li class="page-item">
+													<a id="id_previous_date" class="page-link" aria-label="Previous">
+														<span aria-hidden="true">&laquo;</span>
+														<span class="sr-only">Previous</span>
+													</a>
+												</li>
+												<li class="page-item">
+													<div class="input-group date" data-provide="datepicker">
+														<input id="datepicker" type="text" class="form-control">
+														<div class="input-group-addon">
+															<span class="glyphicon glyphicon-th"></span>
+														</div>
+													</div>
+												</li>
+												<li class="page-item">
+													<a id="id_next_date"  class="page-link"  aria-label="Next">
+														<span aria-hidden="true">&raquo;</span>
+														<span class="sr-only">Next</span>
+													</a>
+												</li>
+												<li class="page-item">
+													<li id="id_get_chart_of_date" class="page-item active"><a class="page-link" ><i class="la la-check"></i></a></li>
+												</li>
+											</ul>
+										</p>
+									   <!--- <div id="trafficChart" class="chart"></div> -->
+										<div id="temperature_chart" style="min-width: auto; height: auto; margin: 0 auto"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!---
+						<div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Home Devices</h4>
+                                        <p class="card-category">Control all of devices in the home</p>
+                                    </div>
+                                    <div class="card-body">
+										<button type="button" style="float:right;margin-bottom: 1px;" class="btn btn-success " ng-click="enterInfo()">Add Devices</button>
+										<button type="button" style="float:right;margin-bottom: 1px;" class="btn btn-info " ng-click="lightControl()">Light</button>
+										<table class="table table-head-bg-success table-striped table-hover">
+												<thead>
+													 <th style="width:1%;">No</th>
+													 <th style="width:10%;">ID</th>
+													 <th style="width:10%;">SerialNumber</th>
+													 <th style="width:10%;">DeviceName</th>
+													 <th style="width:2%;">DeviceStatus</th>
+													 <th style="width:30%;">Description</th>
+													 <th style="width:25%;">Action</th>
+												  </thead>
+												  <tbody>
+													 <tr ng-repeat="emp in empoyees">
+														<td >{{$index+1}}</td>
+														<td ng-bind="emp._id">
+														   <input ng-model="emp._id" ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.SerialNumber">
+														   <input ng-model="emp.SerialNumber"  ng-disabled="enabledEdit[{{$index}}]" />
+														</td>
+														
+														<td ng-bind="emp.DeviceName" >
+														   <input ng-model="emp.DeviceName"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.DeviceStatus" >
+														   <input ng-model="emp.DeviceStatus"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td ng-bind="emp.Description" >
+														   <input ng-model="emp.Description"  ng-disabled="enabledEdit[{{$index}}]"/>
+														</td>
+														
+														<td >
+														   <div class="buttons">
+															  <button type="button" class="btn btn-primary btn-sm" ng-click="editEmployee($index)">Edit</button>
+															  <button type="button" class="btn btn-info btn-sm" ng-click="saveEmployee($index)">Save</button>
+															  <button type="button" class="btn btn-danger btn-sm" ng-click="deleteEmployee($index)">Delete</button>
+														   </div>
+														</td>
+													 </tr>
+												  </tbody>
+											</table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							----->
+                        </div>
+						
+                    </section>
+                    <!--------------------------------------------------------------------------------------------------->
+				<section>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Air Quality</h4>
+                                <p class="card-category">Monitoring parameters of environments</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="card card-stats card-warning">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-sun-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Temperature</p>
+                                                            <h4 class="card-title" id="weather_current_temperature">0</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card card-stats card-info">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-tint"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Humidity</p>
+                                                            <h4 class="card-title" id="weather_current_humidity">0</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card card-stats card-success">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-bar-chart"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Room Temperature</p>
+                                                            <h4 class="card-title" id="room_current_temperature">0</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card card-stats card-danger">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-newspaper-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Room Humidity</p>
+                                                            <h4 class="card-title" id="room_current_humidity">0</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card card-stats">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center icon-warning">
+                                                            <i class="la la-pie-chart text-warning"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Number</p>
+                                                            <h4 class="card-title">150GB</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card card-stats">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-bar-chart text-success"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Revenue</p>
+                                                            <h4 class="card-title">$ 1,345</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card card-stats">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-times-circle-o text-danger"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Errors</p>
+                                                            <h4 class="card-title">23</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card card-stats">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="icon-big text-center">
+                                                            <i class="la la-heart-o text-primary"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 d-flex align-items-center">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Followers</p>
+                                                            <h4 class="card-title">+45K</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</section>	
+                    <!----	
+
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title">Todo list manager</div>
+		</div>
+		<div class="card-body">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">ID</th>
+						<th scope="col">Title</th>
+						<th scope="col">Content</th>
+						<th scope="col">Created date</th>
+						<th scope="col">Updated date</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="emp in empoyees">
+                        <td >{{$index+1}} </td>
+                        <td >
+                           <input ng-model="emp._id" ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+
+                        <td >
+                           <input ng-model="emp.title"  ng-disabled="!enabledEdit[{{$index}}]" />
+                        </td>
+                        <td  >
+                           <input ng-model="emp.content"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td  >
+                           <input ng-model="emp.createdAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td  >
+                           <input ng-model="emp.updatedAt"  ng-disabled="!enabledEdit[{{$index}}]"/>
+                        </td>
+                        <td >
+                           <div class="buttons">
+                              <button ng-click="editEmployee($index)" type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-edit"></i>
+								</button>
+								 <button ng-click="saveEmployee($index)" type="button" data-toggle="tooltip" title="Save Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-save"></i>
+								</button>
+								<button ng-click="deleteEmployee($index)" type="button" data-toggle="tooltip" title="Remove Task" class="btn btn-link <btn-simple-primary">
+									<i class="la la-remove"></i>
+								</button>
+
+                           </div>
+                        </td>
+                     </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+--->
+
+                <div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title"><i class="la la-camera"></i> Security Camera</h4>
+								<p class="card-category">
+									Realtime camera streaming system </p>
+							</div>
+							<div id="webcam" class="card-body">
+								<img id="live-stream-iframe" class="img-responsive" style="width:100%;  height: auto;" img src="http://lethanhtrieu.servehttp.com:8080/?action=stream">
+								<!--<img src="http://lethanhtrieu.servehttp.com:8080/?action=stream" class="img-responsive" style="width:100%;  height: auto;"> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Task</h4>
+                                <p class="card-category">Complete</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">World Map</h4>
+                                <p class="card-category">
+                                    Map of the distribution of users around the world</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="mapcontainer">
+                                    <div class="map">
+                                        <span>Alternative content for the map</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="row row-card-no-pd">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="fw-bold mt-1">My Balance</p>
+                                <h4><b>$ 3,018</b></h4>
+                                <a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Balance</a>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="nav">
+                                    <li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
+                                    <li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="progress-card">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="text-muted">Profit</span>
+                                        <span class="text-muted fw-bold"> $3K</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 7px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="text-muted">Orders</span>
+                                        <span class="text-muted fw-bold"> 576</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 7px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="text-muted">Tasks Complete</span>
+                                        <span class="text-muted fw-bold"> 70%</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 7px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="text-muted">Open Rate</span>
+                                        <span class="text-muted fw-bold"> 60%</span>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 7px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <p class="fw-bold mt-1">Statistic</p>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="la la-pie-chart text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">Number</p>
+                                            <h4 class="card-title">150GB</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="la la-heart-o text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 d-flex align-items-center">
+                                        <div class="numbers">
+                                            <p class="card-category">Followers</p>
+                                            <h4 class="card-title">+45K</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Users Statistics</h4>
+                                <p class="card-category">
+                                    Users statistics this month</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="monthlyChart" class="chart chart-pie"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">2018 Sales</h4>
+                                <p class="card-category">
+                                    Number of products sold</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="salesChart" class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+				
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header ">
+                                <h4 class="card-title">Table</h4>
+                                <p class="card-category">Users Table</p>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-head-bg-success table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td colspan="2">Larry the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+					
+                    <div class="col-md-6">
+                        <div class="card card-tasks">
+                            <div class="card-header ">
+                                <h4 class="card-title">Tasks</h4>
+                                <p class="card-category">To Do List</p>
+                            </div>
+                            <div class="card-body ">
+                                <div class="table-full-width">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                                <th>Task</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>Planning new project structure</td>
+                                                <td class="td-actions text-right">
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>Update Fonts</td>
+                                                <td class="td-actions text-right">
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>Add new Post
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>Finalise the design proposal</td>
+                                                <td class="td-actions text-right">
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
+                                                            <i class="la la-edit"></i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                                            <i class="la la-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="stats">
+                                    <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	 </div>	
+        <footer class="footer">
+            <div class="container-fluid">
+                <!---
+						<nav class="pull-left">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										ThemeKita
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										Help
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										Licenses
+									</a>
+								</li>
+							</ul>
+						</nav>
+						-->
+                <div class="copyright ml-auto">
+                    <strong>Copyright &copy; 2016 - 2020 <a href="/">Thanh Trieu</a>.</strong> All rights reserved.<i class="la la-heart heart text-danger"></i>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
+                    <p>
+                        <b>We'll let you know when it's done</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/css/ready.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <script src="assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugin/chartist/chartist.min.js"></script>
+    <script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+    <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+    <script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+    <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <!--Load AngularJS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.js"></script>
+    <!--Load sweetalert2-->
+    <script src="assets/js/sweetalert2.all.js"></script>
+    <link rel="stylesheet" href="assets/css/sweetalert2.css">
+    <!--Load Bootstrap Color Picker-->
+    <script src="assets/js/bootstrap-colorpicker.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.css">
+    <!--Load MomentJS-->
+	<script src="assets/js/moment.js"></script>
+	<!--Highcharts-->
+	<script src="assets/js/highcharts/highcharts.js"></script>
+	<script src="assets/js/highcharts/data.js"></script>
+	<script src="assets/js/highcharts/series-label.js"></script>
+	<script src="assets/js/highcharts/exporting.js"></script>
+	<script src="assets/js/highcharts/export-data.js"></script>
+	<link rel="stylesheet" href="assets/css/highcharts.css">
+	<!--Load bootstrap-datepicker-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/gijgo.min.js"></script>
+	<!--Load bootstrap-slider-->
+    <script src="assets/js/bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.css">
+	<!--Load Main App-->
+    <script src="assets/js/ready.min.js"></script>
+    <script src="assets/js/socket.io.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script src="/assets/js/socket.io.js"></script>
+	<script src="assets/js/ready.js"></script>
+</body>
+</html>
