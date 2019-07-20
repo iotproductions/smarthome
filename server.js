@@ -4,7 +4,7 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 9000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -120,16 +120,16 @@ app.use(require('connect-flash')());
 });
 */
 // HTML Views
-app.use(express.static(('/home/lethanhtrieuk36/smarthome/views')));
+app.use(express.static((__dirname + '/views')));
 
-app.set('views','/home/lethanhtrieuk36/smarthome/views');
+app.set('views',__dirname + '/views');
 app.set('trust proxy', 1) // trust first proxy
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({
-    secret: 'ilovescotchscotchyscotchscotch', // session secret
+    secret: 'smarthomecontroller', // session secret
     resave: true,
     saveUninitialized: true
 }));
